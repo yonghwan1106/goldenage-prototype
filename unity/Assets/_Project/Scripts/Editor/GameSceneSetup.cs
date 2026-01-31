@@ -202,6 +202,37 @@ namespace GoldenAge.Editor
             Debug.Log($"[GameSceneSetup] {count}개의 NavMeshAgent 설정 완료");
         }
 
+        [MenuItem("GoldenAge/Test/Start Auto Play Test")]
+        public static void StartAutoPlayTest()
+        {
+            if (!Application.isPlaying)
+            {
+                Debug.LogWarning("[GameSceneSetup] 플레이 모드에서만 자동 플레이 테스트를 실행할 수 있습니다.");
+                return;
+            }
+
+            var autoPlay = Object.FindFirstObjectByType<Utilities.AutoPlayTest>();
+            if (autoPlay == null)
+            {
+                var go = new GameObject("AutoPlayTest");
+                autoPlay = go.AddComponent<Utilities.AutoPlayTest>();
+            }
+
+            autoPlay.StartAutoPlay();
+            Debug.Log("[GameSceneSetup] 자동 플레이 테스트 시작!");
+        }
+
+        [MenuItem("GoldenAge/Test/Stop Auto Play Test")]
+        public static void StopAutoPlayTest()
+        {
+            var autoPlay = Object.FindFirstObjectByType<Utilities.AutoPlayTest>();
+            if (autoPlay != null)
+            {
+                autoPlay.StopAutoPlay();
+                Debug.Log("[GameSceneSetup] 자동 플레이 테스트 중지!");
+            }
+        }
+
         [MenuItem("GoldenAge/Scene/Create Complete Game Scene")]
         public static void CreateCompleteGameScene()
         {

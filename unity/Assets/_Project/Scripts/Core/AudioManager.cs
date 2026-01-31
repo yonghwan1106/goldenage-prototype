@@ -92,10 +92,20 @@ namespace GoldenAge.Core
             {
                 PlayBGM(clip);
             }
-            else
+            else if (bgmClips.Count > 0)
             {
+                // 클립 목록이 있는데 해당 이름을 못 찾은 경우만 경고
                 Debug.LogWarning($"[AudioManager] BGM not found: {name}");
             }
+            // 클립 목록이 비어있으면 조용히 무시 (개발 초기 단계)
+        }
+
+        /// <summary>
+        /// BGM이 등록되어 있는지 확인
+        /// </summary>
+        public bool HasBGM(string name)
+        {
+            return bgmDict.ContainsKey(name);
         }
 
         /// <summary>
@@ -184,10 +194,20 @@ namespace GoldenAge.Core
             {
                 PlaySFX(clip);
             }
-            else
+            else if (sfxClips.Count > 0)
             {
+                // 클립 목록이 있는데 해당 이름을 못 찾은 경우만 경고
                 Debug.LogWarning($"[AudioManager] SFX not found: {name}");
             }
+            // 클립 목록이 비어있으면 조용히 무시 (개발 초기 단계)
+        }
+
+        /// <summary>
+        /// SFX가 등록되어 있는지 확인
+        /// </summary>
+        public bool HasSFX(string name)
+        {
+            return sfxDict.ContainsKey(name);
         }
 
         /// <summary>

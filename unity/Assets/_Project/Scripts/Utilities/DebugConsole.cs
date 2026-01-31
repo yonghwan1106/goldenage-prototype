@@ -44,6 +44,8 @@ namespace GoldenAge.Utilities
             if (Instance == null)
             {
                 Instance = this;
+                // DontDestroyOnLoad는 루트 오브젝트에서만 동작하므로 부모 해제
+                transform.SetParent(null);
                 DontDestroyOnLoad(gameObject);
             }
             else
